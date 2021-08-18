@@ -79,6 +79,8 @@ agent3_avglog = []
 best_score = env.reward_range[0]
 
 for i in range(n_games):
+	
+    print(f'\nTraining for Episode: {i}')
 
     # Agent#1 Training
     score = 0
@@ -163,5 +165,5 @@ for i in range(n_games):
     if avg_score > best_score:
         best_score = avg_score
         best_agent.actor.save_weights(path+'/MultiAgentProfiling/data/teamactor.h5')
-        
+        print(f'Model Saved -> Best Model:{best_agent.name}')
         
