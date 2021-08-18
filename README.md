@@ -24,5 +24,11 @@ This repository implements multiple Deep-RL agents to solve an 'openai-gym' puzz
 |:--:|
 |<img src="Collective Training Profile.png" width="400">|
 
+## Developer
+* Name: Kanishk Navale
+* Website: https://kanishknavale.github.io/
+* E-Mail: navalekanishk@gmail.com
 
+## TODO
+1. Profile the MVP-agent with the Solo-agent in gameplay.
 
