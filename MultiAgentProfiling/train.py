@@ -76,7 +76,9 @@ agent1_avglog = []
 agent2_avglog = []
 agent3_avglog = []
 
-best_score = env.reward_range[0]
+agent1_bestscore = env.reward_range[0]
+agent2_bestscore = env.reward_range[0]
+agent3_bestscore = env.reward_range[0]
 
 for i in range(n_games):
 	
@@ -145,25 +147,29 @@ for i in range(n_games):
     np.save(path+'/MultiAgentProfiling/data/agent3_scorelog', agent3_scorelog, allow_pickle=False)
     np.save(path+'/MultiAgentProfiling/data/agent3_avglog', agent3_avglog, allow_pickle=False)
 
-    # Compute the best performing agent
-    score_frame = np.array([agent1_score, agent2_score, agent3_score])
-    best_agent = np.argmax(score_frame)
-    if best_agent == 0: 
-        best_agent = agent1
-        avg_score = agent1_score
-    elif best_agent == 1:
-        best_agent = agent2
-        avg_score = agent2_score
-    elif best_agent == 2: 
-        best_agent = agent3
-        avg_score = agent3_score 
-
     # Init. transfer
-    transfer_weights(best_agent)
+    if i%25 == 0:
+        # Compute the best performing agent
+        score_frame = np.array([agent1_score, agent2_score, agent3_score])
+        best_agent = np.argmax(score_frame)
+        if best_agent == 0: best_agent = agent1
+        elif best_agent == 1:best_agent = agent2
+        elif best_agent == 2: best_agent = agent3
+        print(f'Transfering Weights of {best_agent.name} to other agents...')
+        transfer_weights(best_agent)
         
     # Save the best 'actor' model
-    if avg_score > best_score:
-        best_score = avg_score
-        best_agent.actor.save_weights(path+'/MultiAgentProfiling/data/teamactor.h5')
-        print(f'Model Saved -> Best Model:{best_agent.name}')
+    if agent1_bestscore < agent1_score:
+        agent1_bestscore = agent1_score
+        print (f"Saving 'agent1' with best score:{agent1_bestscore}")
+        agent1.actor.save_weights(path+'/MultiAgentProfiling/data/agent1.h5')
+    
+    if agent2_bestscore < agent2_score:
+        agent2_bestscore = agent2_score
+        print (f"Saving 'agent2' with best score:{agent2_bestscore}")
+        agent2.actor.save_weights(path+'/MultiAgentProfiling/data/agent2.h5')
         
+    if agent3_bestscore < agent3_score:
+        agent3_bestscore = agent3_score
+        print (f"Saving 'agent3' with best score:{agent3_bestscore}")
+        agent3.actor.save_weights(path+'/MultiAgentProfiling/data/agent3.h5')

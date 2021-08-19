@@ -28,14 +28,12 @@ This repository implements multiple Deep-RL agents to solve an 'openai-gym' puzz
 
 ## Results
 
-1. The Single TD3 agent is better.
+1. The Agents in team are way better than the single agent.
+
 ## Developer
 
 * Name: Kanishk Navale
 * Website: https://kanishknavale.github.io/
 * E-Mail: navalekanishk@gmail.com
 
-## TODO
-
-1. Devise & add 'advantage' for multi TD3 agents.
 

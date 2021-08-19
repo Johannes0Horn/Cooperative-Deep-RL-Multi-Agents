@@ -28,8 +28,8 @@ agent_score = np.load(os.getcwd()+'/data/team_score.npy')
 
 #Plot and Save the Graphs
 plt.figure(2)
-plt.plot(np.abs(solo_score), label='Solo Agent')
-plt.plot(np.abs(agent_score), label='Team Agent')
+plt.plot(solo_score, label='Solo Agent')
+plt.plot(agent_score, label='Agents in Team')
 plt.grid(True)
 plt.xlabel('Episodes')
 plt.ylabel('Total Rewards')
