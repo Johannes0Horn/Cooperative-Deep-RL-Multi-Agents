@@ -28,7 +28,12 @@ This repository implements multiple Deep-RL agents to solve an 'openai-gym' puzz
 
 ## Results
 
-1. The Agents in team are way better than the single agent.
+1. Single Agent Sum.Score: -22712.6309
+2. Multi Agent Sum.Score: -10695.2879    
+3. Single Agent Mean Score: -227.1263
+4. Multi Agent Mean Score: -106.9528     
+5. Score Difference in % is: 35.9715%
+6. Agents in team perform better than a single agent by 35.9715%
 
 ## Developer
 
