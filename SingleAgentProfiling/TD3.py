@@ -72,13 +72,14 @@ class Actor(tf.keras.Model):
     
 class Agent:
     """Defines a RL Agent based on Actor-Critc method"""
-    def __init__(self, input_dims, alpha=0.001, beta=0.002, env=None,
+    def __init__(self,  env, alpha=0.001, beta=0.002,
                  gamma=0.99, max_size=1000000, tau=0.005,
                  H1=512, H2=256, batch_size=64, noise=0.1):
         self.gamma = gamma
         self.tau = tau
+        self.obs_shape = env.observation_space.shape[0]
         self.n_actions = env.action_space.shape[0]
-        self.memory = ReplayBuffer(max_size, input_dims, self.n_actions)
+        self.memory = ReplayBuffer(max_size, self.obs_shape, self.n_actions)
         self.batch_size = batch_size
         self.noise = noise
         self.max_action = env.action_space.high

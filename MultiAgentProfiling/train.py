@@ -43,9 +43,9 @@ class ReplayBuffer:
         return states, actions, rewards, _states, dones
 
 # Init. Agents & replay buffer
-agent1 = Agent('agent1', env)
-agent2 = Agent('agent2', env)
-agent3 = Agent('agent3', env)
+agent1 = Agent(env, 'agent1')
+agent2 = Agent(env, 'agent2')
+agent3 = Agent(env, 'agent3')
 Buffer = ReplayBuffer(3000000, env.observation_space.shape[0], env.action_space.shape[0])
 
 # DEF. to transfer weights

@@ -42,7 +42,7 @@ class Actor(tf.keras.Model):
     
 class Agent:
     """Defines a RL Agent based on Actor-Critc method"""
-    def __init__(self, name, env, alpha=0.001, beta=0.002,
+    def __init__(self, env, name, alpha=0.001, beta=0.002,
                  gamma=0.99, tau=0.005,
                  H1=512, H2=256, batch_size=64, noise=0.1):
         self.gamma = gamma
