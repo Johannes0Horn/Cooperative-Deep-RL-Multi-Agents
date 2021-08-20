@@ -38,27 +38,34 @@ solo_agent.actor.load_weights(path+'/SingleAgentProfiling/data/actor.h5')
 # Init. & Profile the Solo and Team Agent
 print (f'Testing Solo Agent...')
 solo_scorelog = []
+solo_epslog = []
 score = 0
 for i in range(100):
     done = False
     obs = env.reset()
+    i = 0
     while not done:
         #env.render()
         action = solo_agent.choose_action(obs)
         _obs, reward, done, info = env.step(action)
         obs = _obs
         score += reward
+        i += 1
     solo_scorelog.append(score)
+    solo_epslog.append(i)
 env.close()
 np.save(path+'/data/solo_score', solo_scorelog, allow_pickle=False)
+np.save(path+'/data/solo_eps', solo_epslog, allow_pickle=False)
 
 
 print (f'Testing Team Agent...')
 team_scorelog = []
+team_epslog = []
 score = 0
 for i in range(100):
     done = False
     obs = env.reset()
+    i = 0
     while not done:
         #env.render()
         # Taking a step using agent1
@@ -88,8 +95,12 @@ for i in range(100):
         elif best_step == 2:
             score += agent3_reward
             obs = deepcopy(agent3_obs)
+        
+        i += 1
     
     team_scorelog.append(score)
+    team_epslog.append(i)
     
 env.close()
 np.save(path+'/data/team_score', team_scorelog, allow_pickle=False)
+np.save(path+'/data/team_eps', team_epslog, allow_pickle=False)

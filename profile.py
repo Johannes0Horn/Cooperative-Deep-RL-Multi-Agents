@@ -26,6 +26,8 @@ plt.savefig(os.getcwd()+'/data/Collective Training Profile.png')
 # Import Data
 solo_score = np.load(os.getcwd()+'/data/solo_score.npy')
 team_score = np.load(os.getcwd()+'/data/team_score.npy')
+solo_eps = np.load(os.getcwd()+'/data/solo_eps.npy')
+team_eps = np.load(os.getcwd()+'/data/team_eps.npy')
 
 #Plot and Save the Graphs
 plt.figure(2)
@@ -40,7 +42,6 @@ plt.savefig(os.getcwd()+'/data/Agent Testing Profile.png')
 
 print('Analysis...')
 print(f'Single Agent Sum.Score: {solo_score[-1]} \t Multi Agent Sum.Score: {team_score[-1]}')
-print(f'Single Agent Mean Score: {solo_score[-1]/100} \t Multi Agent Mean Score: {team_score[-1]/100}')
-print(f'Score Difference: {solo_score[-1]-team_score[-1]}')
-print(f'Score Difference in % is: {((solo_score[-1]-team_score[-1])/(solo_score[-1]+team_score[-1]))*100}%')
+print(f'Single Agent Mean Score: {solo_score[-1]/len(solo_score)} \t Multi Agent Mean Score: {team_score[-1]/len(team_score)}')
+print(f'Scores in Ratio :\nSingle Agent : Multi Agent ={1/(solo_score[-1]/team_score[-1])}\nMulti Agent : Single Agent ={1/(team_score[-1]/solo_score[-1])}')
 
